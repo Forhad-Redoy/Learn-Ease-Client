@@ -5,7 +5,7 @@ const CourseCard = ({ course }) => {
   const { title, category, image, description, _id } = course;
   return (
     
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white">
       <figure className="h-66 overflow-hidden">
         <img
           src={image}
@@ -15,11 +15,11 @@ const CourseCard = ({ course }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{}</h2>
-        <div className="badge text-xs badge-xs bg-purple-300 rounded-full">
+        <div className="badge text-xs badge-xs text-black bg-purple-300 rounded-full">
           {category}
         </div>
-        <div className="text-xs text-secondary">{title}</div>
-        <p className="line-clamp-1">{description}</p>
+        <div className="text-xs text-pink-400">{title}</div>
+        <p className="line-clamp-1 text-black">{description}</p>
         {/* <p className="text-sm text-base-content/70">by {author}</p> */}
         <div className="card-actions justify-between items-center mt-4">
           <div className="flex gap-4 text-sm text-base-content/60">

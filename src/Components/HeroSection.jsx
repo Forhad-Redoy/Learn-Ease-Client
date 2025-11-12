@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
 import { BookOpen, GraduationCap, Rocket } from "lucide-react";
+import { FaBusinessTime, FaMusic, FaPaintBrush } from "react-icons/fa";
 
 export default function HeroSection() {
   return (
@@ -60,10 +61,13 @@ export default function HeroSection() {
                 <GraduationCap className="w-5 h-5" /> Digital Marketing
               </span>
               <span className="flex items-center gap-2">
-                <GraduationCap className="w-5 h-5" /> Music
+                <FaMusic className="w-5 h-5" /> Music
               </span>
               <span className="flex items-center gap-2">
-                <GraduationCap className="w-5 h-5" /> Art
+                <FaPaintBrush className="w-5 h-5" /> Art
+              </span>
+              <span className="flex items-center gap-2">
+                <FaBusinessTime className="w-5 h-5" /> Business
               </span>
             </div>
           </Marquee>
