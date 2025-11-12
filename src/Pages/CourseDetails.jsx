@@ -4,6 +4,7 @@ import { Link, useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import useAxios from '../Hooks/useAxios';
 import { AuthContext } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
 
 const CourseDetails = () => {
     const data =useLoaderData()
@@ -48,7 +49,7 @@ const CourseDetails = () => {
   };
 
   const handleEnroll =()=>{
-    fetch(`http://localhost:3000/enrolls`,{
+    fetch('http://localhost:3000/enrolls',{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -58,6 +59,7 @@ const CourseDetails = () => {
     .then(res => res.json())
     .then(data=>{
       console.log(data)
+      toast.success('Successfully Enrolled')
     })
     .catch(err =>{
       console.log(err)
@@ -110,6 +112,7 @@ const CourseDetails = () => {
               </button> */}
               <button
                 onClick={handleEnroll}
+                 to={'/my-enrolls'}
                  className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
               >
                 Enroll Now

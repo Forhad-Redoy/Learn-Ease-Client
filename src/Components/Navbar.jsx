@@ -133,9 +133,14 @@ const Navbar = () => {
                 <li className="text-sm font-bold">{user.displayName}</li>
                 <li className="text-xs">{user.email}</li>
               </div>
-              <li className="mt-3">
+              <li className="mt-1">
                 <Link to={"/profile"}>
                   <FaUser /> Profile
+                </Link>
+              </li>
+              <li className="mt-1">
+                <Link to={"/my-enrolls"}>
+                  <FaUser />My Enrolls
                 </Link>
               </li>
 
@@ -157,16 +162,16 @@ const Navbar = () => {
            defaultChecked={localStorage.getItem('theme') === "dark"}
            className="toggle"/> */}
               
-              <li>
+              {/* <li>
                 <a>
                   {" "}
                   <FaGear /> Settings
                 </a>
-              </li>
+              </li> */}
               <li>
                 <button
                   onClick={handleLogout}
-                  className="btn btn-xs text-left bg-linear-to-r from-pink-500 to-red-500 text-white"
+                  className="btn btn-xs mt-1 text-left bg-linear-to-r from-pink-500 to-red-500 text-white"
                 >
                   <IoLogOut /> Logout
                 </button>
