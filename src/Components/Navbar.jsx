@@ -10,7 +10,7 @@ import { IoLogIn, IoLogOut } from 'react-icons/io5';
 import { FaGear } from 'react-icons/fa6';
 
 const Navbar = () => {
-     const { user, signoutUserFunc, setUser, loading, setLoading } =
+     const { user, signoutUserFunc, setUser,  setLoading } =
     use(AuthContext);
   // const [showDropdown, setShowDropdown] = useState(false);
 
@@ -77,9 +77,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <NavLink className="btn btn-ghost text-xl" to={"/"}>
+          <NavLink className=" text-xl font-semibold" to={"/"}>
           
-            LearnEase
+            Learn<span className=' text-purple-500'>Easy</span>
           </NavLink>
         </div>
 

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link,  } from 'react-router';
+import React from "react";
+import { Link } from "react-router";
 
-const CourseCard = ({course}) => {
-  
-    const {title,category,image,description,_id} =course
-    return (
-         <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+const CourseCard = ({ course }) => {
+  const { title, category, image, description, _id } = course;
+  return (
+    
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <figure className="h-66 overflow-hidden">
         <img
           src={image}
@@ -15,11 +15,11 @@ const CourseCard = ({course}) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{}</h2>
-        <div className="badge text-xs badge-xs badge-secondary rounded-full">{category}</div>
+        <div className="badge text-xs badge-xs bg-purple-300 rounded-full">
+          {category}
+        </div>
         <div className="text-xs text-secondary">{title}</div>
-        <p className="line-clamp-1">
-            {description}
-        </p>
+        <p className="line-clamp-1">{description}</p>
         {/* <p className="text-sm text-base-content/70">by {author}</p> */}
         <div className="card-actions justify-between items-center mt-4">
           <div className="flex gap-4 text-sm text-base-content/60">
@@ -32,11 +32,16 @@ const CourseCard = ({course}) => {
               {likes}
             </span> */}
           </div>
-          <Link to={`/course-details/${_id}`} className="btn rounded-full bg-linear-to-r from-purple-500 to-blue-600 hover:from-red-600 hover:to-purple-500 text-white w-full btn-sm">View</Link>
+          <Link
+            to={`/course-details/${_id}`}
+            className="my-btn"
+          >
+            View
+          </Link>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default CourseCard;

@@ -49,22 +49,19 @@ const CourseDetails = () => {
   };
 
   const handleEnroll =()=>{
-    fetch('http://localhost:3000/enrolls',{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-      },
-      body:JSON.stringify({...course,enrollBy : user.email})
-    })
-    .then(res => res.json())
-    .then(data=>{
-      console.log(data)
-      toast.success('Successfully Enrolled')
-    })
-    .catch(err =>{
-      console.log(err)
-    })
-  }
+   axios.post('/enrolls', {
+    ...course,
+    enrollBy: user.email,
+  })
+  .then(res => {
+    // console.log(res.data);
+    toast.success('Successfully Enrolled');
+  })
+  .catch(error => {
+    console.error(error);
+    toast.error('Enrollment failed');
+  });
+};
   
     return (
          <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
