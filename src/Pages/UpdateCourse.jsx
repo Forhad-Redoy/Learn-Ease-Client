@@ -101,6 +101,7 @@ const UpdateCourse = () => {
             <option value="Development">Development</option>
             <option value="Music">Music</option>
             <option value="Business">Business</option>
+            <option value="Art">Art</option>
           </select>
         </div>
 
@@ -116,7 +117,7 @@ const UpdateCourse = () => {
           />
         </div>
 
-        <button className="btn btn-primary w-full mt-4">Update Course</button>
+        <button className="my-btn">Update Course</button>
       </form>
     </div>
   );

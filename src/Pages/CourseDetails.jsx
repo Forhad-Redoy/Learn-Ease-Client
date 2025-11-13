@@ -1,20 +1,19 @@
-
-import React, { use } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router';
-import Swal from 'sweetalert2';
-import useAxios from '../Hooks/useAxios';
-import { AuthContext } from '../Context/AuthContext';
-import { toast } from 'react-toastify';
+import React, { use } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAxios from "../Hooks/useAxios";
+import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const CourseDetails = () => {
-    const data =useLoaderData()
-    console.log(data)
-    const navigate = useNavigate();
-    const course =data.result;
-    const {user}=use(AuthContext)
-    const axios=useAxios()
+  const data = useLoaderData();
+  console.log(data);
+  const navigate = useNavigate();
+  const course = data.result;
+  const { user } = use(AuthContext);
+  const axios = useAxios();
 
-     const handleDlete = () => {
+  const handleDlete = () => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -25,47 +24,48 @@ const CourseDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-       axios
-      .delete(`/courses/${course._id}`)
-      .then((res) => {
-        // console.log(res.data);
-        navigate("/all-courses");
+        axios
+          .delete(`/courses/${course._id}`)
+          .then((res) => {
+            // console.log(res.data);
+            navigate("/all-courses");
 
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      })
-      .catch((err) => {
-        console.error("Error deleting course:", err);
-        Swal.fire({
-          title: "Error!",
-          text: "Failed to delete course.",
-          icon: "error",
-        });
-      });
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          })
+          .catch((err) => {
+            console.error("Error deleting course:", err);
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to delete course.",
+              icon: "error",
+            });
+          });
       }
     });
   };
 
-  const handleEnroll =()=>{
-   axios.post('/enrolls', {
-    ...course,
-    enrollBy: user.email,
-  })
-  .then(res => {
-    // console.log(res.data);
-    toast.success('Successfully Enrolled');
-  })
-  .catch(error => {
-    console.error(error);
-    toast.error('Enrollment failed');
-  });
-};
-  
-    return (
-         <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8 min-h-s">
+  const handleEnroll = () => {
+    axios
+      .post("/enrolls", {
+        ...course,
+        enrollBy: user.email,
+      })
+      .then((res) => {
+        // console.log(res.data);
+        toast.success("Successfully Enrolled");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Enrollment failed");
+      });
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8 min-h-screen">
       <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
         <div className="flex flex-col md:flex-row gap-8 p-6 md:p-8">
           <div className="shrink-0 w-full md:w-1/2">
@@ -81,16 +81,15 @@ const CourseDetails = () => {
               {course.title}
             </h1>
 
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
-                {course.category}
-              </div>
+            <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              {course.category}
+            </div>
             <div className="flex gap-3">
-
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">Price : $
-               {course.price}
+              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+                Price : ${course.price}
               </div>
-              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">Duration : 
-                {course.duration}
+              <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+                Duration :{course.duration}
               </div>
             </div>
 
@@ -113,8 +112,8 @@ const CourseDetails = () => {
               </button> */}
               <button
                 onClick={handleEnroll}
-                 to={'/my-enrolls'}
-                 className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
+                to={"/my-enrolls"}
+                className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
               >
                 Enroll Now
               </button>
@@ -129,7 +128,7 @@ const CourseDetails = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default CourseDetails;

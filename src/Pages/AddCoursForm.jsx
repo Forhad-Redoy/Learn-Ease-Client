@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
 
 const AddCourseForm = () => {
-  const { user } = use(AuthContext);
+  const { user,loading } = use(AuthContext);
   const axios = useAxios();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +30,9 @@ const AddCourseForm = () => {
         toast.error("Failed to add course!");
       });
   };
+   if (loading) {
+    return <Loadingspinner />;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">

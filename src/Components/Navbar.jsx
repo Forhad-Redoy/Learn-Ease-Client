@@ -38,7 +38,7 @@ const Navbar = () => {
     setTheme(checked ? "dark": "light")
   }
     return (
-        <div className="py-2 navbar bg-base-100 shadow-sm bg-indigo-400">
+        <div className="py-2 navbar  shadow-sm ">
       <MyContainer className="flex items-center justify-between">
         {/* Left side */}
         <div className="navbar-start">
@@ -134,11 +134,7 @@ const Navbar = () => {
                 <li className="text-sm font-bold">{user.displayName}</li>
                 <li className="text-xs">{user.email}</li>
               </div>
-              <li className="mt-1">
-                <Link to={"/profile"}>
-                  <FaUser /> Profile
-                </Link>
-              </li>
+              
               <li className="mt-1">
                 <Link to={"/my-enrolls"}>
                   <FaUser />My Enrolls

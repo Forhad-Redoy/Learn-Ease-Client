@@ -28,7 +28,9 @@ const MyCourses = () => {
     return <Loadingspinner />;
   }
   return (
-    <MyContainer>
+    
+    <div className="min-h-screen">
+      <MyContainer>
       <h1 className='text-center text-5xl font-bold mt-15 mb-10'>My Courses</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {courses.map((course, index) => (
@@ -38,6 +40,7 @@ const MyCourses = () => {
           ))}
       </div>
     </MyContainer>
+    </div>
   );
 };
 

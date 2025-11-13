@@ -27,6 +27,8 @@ const MyEnrolls = () => {
     return <Loadingspinner />;
   }
   return (
+    <div className="min-h-screen">
+
     <MyContainer>
       <h1 className="text-center text-4xl font-bold my-7">My Enrolls</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -37,6 +39,7 @@ const MyEnrolls = () => {
           ))}
       </div>
     </MyContainer>
+    </div>
   );
 };
 
