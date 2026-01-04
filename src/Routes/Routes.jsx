@@ -18,6 +18,9 @@ import UpdateCourse from "../Pages/UpdateCourse";
 import MyCourses from "../Pages/MyCourses";
 import Loadingspinner from "../Components/Loadingspinner";
 import MyEnrolls from "../Pages/MyEnrolls";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Profile from "../Pages/Dashboard/Common/Profile";
+import Statistics from "../Components/Dashboard/Statistic";
 
 const router = createBrowserRouter([
   {
@@ -58,14 +61,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
-      {
-        path: "/my-enrolls",
-        element: (
-          <PrivateRouter>
-            <MyEnrolls />
-          </PrivateRouter>
-        ),
-      },
+      
       {
         path: "/course-details/:id",
         element: (
@@ -105,6 +101,36 @@ const router = createBrowserRouter([
         element: <AddCourseForm />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouter>
+        <DashboardLayout />
+      </PrivateRouter>
+    ),
+    children:[
+      {
+        index:true,
+        element:(
+          <Statistics/>
+        )
+      },
+      {
+        path: "my-enrolls",
+        element: (
+          <PrivateRouter>
+            <MyEnrolls />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path:"profile",
+        element:<Profile/>
+
+      },
+
+    ]
   },
 ]);
 

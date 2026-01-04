@@ -13,6 +13,10 @@ const AllCourses = () => {
 
   const [activeCategory, setActiveCategory] = useState("All");
 
+  // 🔹 Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 10;
+
   const categories = [
     "All",
     "Development",
@@ -24,13 +28,13 @@ const AllCourses = () => {
 
   const handleFilter = (category) => {
     setActiveCategory(category);
+    setCurrentPage(1); // reset page when filtering
 
     if (category === "All") {
       setCourses(loadedData);
       return;
     }
 
-    // Filter by category (case-insensitive, partial match)
     const filtered = loadedData.filter(
       (course) =>
         course.category &&
@@ -39,6 +43,16 @@ const AllCourses = () => {
 
     setCourses(filtered);
   };
+
+  // 🔹 Pagination calculations
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = courses.slice(
+    indexOfFirstCourse,
+    indexOfLastCourse
+  );
+
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
 
   if (loading) {
     return <Loadingspinner />;
@@ -70,12 +84,47 @@ const AllCourses = () => {
 
         {/* Course Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {courses.map((course, index) => (
+          {currentCourses.map((course, index) => (
             <Reveal key={course._id} delay={index * 0.1}>
               <CourseCard course={course} />
             </Reveal>
           ))}
         </div>
+
+        {/* 🔹 Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-12 gap-2">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              className="px-4 py-2 border rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-4 py-2 border rounded ${
+                  currentPage === i + 1
+                    ? "bg-blue-600 text-white"
+                    : "bg-white"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              className="px-4 py-2 border rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </MyContainer>
     </div>
   );

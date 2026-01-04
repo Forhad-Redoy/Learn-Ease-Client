@@ -6,6 +6,8 @@ import WhyChooseUs from "../Components/WhyChooseUS";
 import Reveal from "../Components/Reveal";
 import HeroSection from "../Components/HeroSection";
 import TopInstructors from "../Components/TopInstructors";
+import Features from "../Components/Features";
+import Services from "../Components/Services";
 
 const Home = () => {
   const data = useLoaderData();
@@ -26,6 +28,8 @@ const Home = () => {
         </div>
         <WhyChooseUs />
         <TopInstructors />
+        <Features/>
+        <Services/>
       </MyContainer>
     </div>
   );

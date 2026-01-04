@@ -23,14 +23,7 @@ const CourseCard = ({ course }) => {
         {/* <p className="text-sm text-base-content/70">by {author}</p> */}
         <div className="card-actions justify-between items-center mt-4">
           <div className="flex gap-4 text-sm text-base-content/60">
-            {/* <span className="flex items-center gap-1">
-              <Eye className="w-4 h-4" />
-              {views}
-            </span> */}
-            {/* <span className="flex items-center gap-1">
-              <Heart className="w-4 h-4" />
-              {likes}
-            </span> */}
+           
           </div>
           <Link
             to={`/course-details/${_id}`}

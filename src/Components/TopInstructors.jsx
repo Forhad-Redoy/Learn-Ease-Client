@@ -35,8 +35,8 @@ const TopInstructors = () => {
 
   return (
     <section className="py-16 ">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-         <div className='text-center text-5xl font-bold mt-15 mb-10'><span className='text-purple-500'>Top</span> Instructors</div>
+      <div className=" mx-auto text-center">
+         <div className='text-center text-5xl font-bold mt-15 mb-5'><span className='text-purple-500'>Top</span> Instructors</div>
          <p className=" max-w-2xl mx-auto mb-12">
           Our instructors are industry professionals with years of experience and a passion for teaching. 
           They bring real-world insights, hands-on projects, and personalized guidance to help you succeed.

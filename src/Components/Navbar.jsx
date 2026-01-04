@@ -38,7 +38,7 @@ const Navbar = () => {
     setTheme(checked ? "dark": "light")
   }
     return (
-        <div className="py-2 navbar  shadow-sm ">
+        <div className="py-2 navbar shadow-sm sticky top-0 z-50 bg-base-100">
       <MyContainer className="flex items-center justify-between">
         {/* Left side */}
         <div className="navbar-start">
@@ -136,35 +136,12 @@ const Navbar = () => {
               </div>
               
               <li className="mt-1">
-                <Link to={"/my-enrolls"}>
-                  <FaUser />My Enrolls
+                <Link to={"/dashboard"}>
+                  <FaUser />Dashboard
                 </Link>
               </li>
 
-              {/* <li>
-                <Link to={"/my-courses"}>
-                  My Courses
-                </Link>
-              </li> */}
-
-              {/* <li >
-                <Link to={"/my-downloads"}>
-                 My Downloads
-                </Link>
-              </li> */}
-
-              {/* <input
-           onChange={(e)=> handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/> */}
               
-              {/* <li>
-                <a>
-                  {" "}
-                  <FaGear /> Settings
-                </a>
-              </li> */}
               <li>
                 <button
                   onClick={handleLogout}
@@ -184,44 +161,7 @@ const Navbar = () => {
             <IoLogIn /> Login
           </Link>
         )}
-          {/* {loading ? (
-            <ClockLoader color="#e74c3c" />
-          ) : user ? (
-            <>
-              <div
-                className="relative"
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
-              >
-                <img
-                  src={user?.photoURL || "https://via.placeholder.com/88"}
-                  alt="User Avatar"
-                  className="h-[45px] w-[45px] rounded-full cursor-pointer border-2 border-purple-400"
-                />
-                {showDropdown && (
-                  <div className="absolute right-0 mt-2 w-52 bg-white shadow-lg rounded-lg p-4 z-50">
-                    <h2 className="text-lg text-center font-semibold text-gray-800">
-                      {user?.displayName || "No Name"}
-                    </h2>
-                    
-                  </div>
-                )}
-              </div>
-              <button
-                onClick={handleLogout}
-                className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-purple-600 transition"
-              >
-                Sign Out
-              </button>
-            </>
-          ) : (
-            <Link
-              to={"/login"}
-              className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-purple-600 transition"
-            >
-              Login
-            </Link>
-          )} */}
+          
         </div>
       </MyContainer>
     </div>

@@ -6,7 +6,7 @@ import { FaBusinessTime, FaMusic, FaPaintBrush } from "react-icons/fa";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden mt-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-20">
+    <section className="relative overflow-hidden rounded-xl mt-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-20">
       {/* Background Accent */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
 

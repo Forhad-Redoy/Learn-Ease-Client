@@ -12,10 +12,10 @@ const MainLayout = () => {
   const navigation = useNavigation();
   const inPageLoading = navigation.state === "loading";
   return (
-    <div>
+    <div className="bg-gray-50">
       <Navbar />
 
-      {loading || inPageLoading ? <Loadingspinner /> : <Outlet />}
+      {loading || inPageLoading ? <Loadingspinner /> : <Outlet  />}
 
       <Footer />
     </div>

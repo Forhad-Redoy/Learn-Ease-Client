@@ -65,10 +65,10 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="py-16 px-6 md:px-12 ">
-      <div className="max-w-6xl mx-auto text-center">
+    <section className="py-16  ">
+      <div className=" mx-auto text-center">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-8"
+          className="text-5xl  font-bold mt-15 mb-5"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
