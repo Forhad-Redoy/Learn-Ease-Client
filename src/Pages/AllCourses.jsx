@@ -26,7 +26,7 @@ const AllCourses = () => {
     "Art",
   ];
 
-  // 🔄 Fetch courses
+  // Fetch courses
   useEffect(() => {
     fetch(
       `http://localhost:3000/courses?search=${search}&category=${activeCategory}&page=${currentPage}&limit=${coursesPerPage}`
@@ -49,7 +49,7 @@ const AllCourses = () => {
           All Courses
         </h1>
 
-        {/* 🔍 Search */}
+        {/* Search */}
         <div className="flex justify-center mb-8">
           <input
             type="text"
@@ -63,7 +63,7 @@ const AllCourses = () => {
           />
         </div>
 
-        {/* 🗂 Category Filter */}
+        {/*  Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {categories.map((cat) => (
             <button
@@ -83,7 +83,7 @@ const AllCourses = () => {
           ))}
         </div>
 
-        {/* 📚 Courses */}
+        {/*  Courses */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course, index) => (
             <Reveal key={course._id} delay={index * 0.1}>
@@ -92,7 +92,7 @@ const AllCourses = () => {
           ))}
         </div>
 
-        {/* 📄 Pagination */}
+        {/*  Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-12 gap-2">
             <button

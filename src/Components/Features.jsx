@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FaChartLine, FaRegAddressCard } from "react-icons/fa";
+import { GrSecure } from "react-icons/gr";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -37,6 +39,7 @@ export default function Features() {
       title: "One-click Enrollment",
       desc: "Log in, pick a course, and enroll instantly. Your dashboard updates right away.",
       icon: (
+        
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path
             d="M20 6H9a2 2 0 0 0-2 2v11"
@@ -63,59 +66,21 @@ export default function Features() {
       title: "Progress Tracking",
       desc: "Track enrolled courses, lessons, and progress in one clean dashboard.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M4 19V5M4 19h16"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M7 15l3-3 3 2 5-6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+       <FaChartLine />
       ),
     },
     {
-      title: "Role Request System",
-      desc: "Users can request roles (like instructor). Admin reviews and approves securely.",
+      title: "Add Courses System",
+      desc: "Users can request roles (like instructor). Instructor can add coursers.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M16 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M4 20a8 8 0 0 1 16 0"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+       <FaRegAddressCard />
       ),
     },
     {
       title: "Secure Login",
       desc: "Modern authentication with protected routes and token-based access.",
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M17 11V8a5 5 0 0 0-10 0v3"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <path
-            d="M7 11h10v10H7V11Z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinejoin="round"
-          />
-        </svg>
+      icon: (<GrSecure />
+        
       ),
     },
   ];

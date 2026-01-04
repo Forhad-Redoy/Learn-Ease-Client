@@ -1,91 +1,99 @@
-import { FaUserAlt, FaDollarSign } from 'react-icons/fa'
-import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
+import { use, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
+
+import { AuthContext } from "../../Context/AuthContext";
+import axios from "axios";
 
 const Statistics = () => {
-  return (
-    <div>
-      <div className='mt-12'>
-        {/* small cards */}
-        <div className='mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grow'>
-          {/* Sales Card */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}
-            >
-              <FaDollarSign className='w-6 h-6 text-white' />
-            </div>
-            <div className='p-4 text-right'>
-              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Revenue
-              </p>
-              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                $120
-              </h4>
-            </div>
-          </div>
-          {/* Total Orders */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
-            >
-              <BsFillCartPlusFill className='w-6 h-6 text-white' />
-            </div>
-            <div className='p-4 text-right'>
-              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Orders
-              </p>
-              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                120
-              </h4>
-            </div>
-          </div>
-          {/* Total Plants */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
-            >
-              <BsFillHouseDoorFill className='w-6 h-6 text-white' />
-            </div>
-            <div className='p-4 text-right'>
-              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total Plants
-              </p>
-              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                120
-              </h4>
-            </div>
-          </div>
-          {/* Users Card */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
-            >
-              <FaUserAlt className='w-6 h-6 text-white' />
-            </div>
-            <div className='p-4 text-right'>
-              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Total User
-              </p>
-              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                10
-              </h4>
-            </div>
-          </div>
-        </div>
+  // const axiosSecure = useAxiosSecure();
+  const { user } = use(AuthContext);
 
-        <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'>
-          {/*Sales Bar Chart */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
-            {/* Chart goes here.. */}
-          </div>
-          {/* Calender */}
-          <div className=' relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
-            {/* Calender */}
-          </div>
+  // chartType: "course" | "month"
+  const [chartType, setChartType] = useState("course");
+
+  const url = useMemo(() => {
+    if (chartType === "month") return "/enrolls/stats/by-month";
+    return "/enrolls/stats/by-course";
+  }, [chartType]);
+
+  const { data = [], isLoading } = useQuery({
+    queryKey: ["enroll-stats", chartType, user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axios.get(url, {
+        params: { email: user.email },
+      });
+
+      return Array.isArray(res.data?.data)
+        ? res.data.data
+        : Array.isArray(res.data)
+        ? res.data
+        : [];
+    },
+  });
+
+  if (isLoading) return <div className="p-6">Loading chart...</div>;
+
+  return (
+    <div className="bg-white rounded-2xl shadow p-5">
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <h2 className="text-lg font-semibold">My Enroll Analytics</h2>
+
+        <div className="flex gap-2">
+          <button
+            onClick={() => setChartType("course")}
+            className={`px-3 py-1.5 rounded-lg text-sm border ${
+              chartType === "course" ? "bg-black text-white" : "bg-white"
+            }`}
+          >
+            By Course
+          </button>
+          <button
+            onClick={() => setChartType("month")}
+            className={`px-3 py-1.5 rounded-lg text-sm border ${
+              chartType === "month" ? "bg-black text-white" : "bg-white"
+            }`}
+          >
+            By Month
+          </button>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Statistics
+      <div className="w-full h-[360px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{ top: 10, right: 20, left: 0, bottom: 10 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 12 }}
+              interval={0}
+              angle={chartType === "course" ? -15 : 0}
+              height={chartType === "course" ? 60 : 30}
+            />
+            <YAxis allowDecimals={false} />
+            <Tooltip />
+            <Bar dataKey="total" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {!data?.length && (
+        <p className="text-sm text-gray-500 mt-3">No data found.</p>
+      )}
+    </div>
+  );
+};
+
+export default Statistics;

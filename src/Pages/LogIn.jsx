@@ -11,10 +11,7 @@ const DEMO_USER = {
     password: "DemoUser@123",
   };
 
-  const DEMO_ADMIN = {
-    email: "demo.admin@gmail.com",
-    password: "DemoAdmin@123",
-  };
+  
 const LogIn = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
@@ -188,17 +185,7 @@ const LogIn = () => {
                   Demo User
                 </button>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEmail(DEMO_ADMIN.email);
-                    setPassword(DEMO_ADMIN.password);
-                    handleDemoLogin(DEMO_ADMIN);
-                  }}
-                  className="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg font-semibold"
-                >
-                  Demo Admin
-                </button>
+                
               </div>
 
               <div className="flex items-center justify-center gap-2 my-2">
